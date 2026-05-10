@@ -1,0 +1,175 @@
+/* ============================================================
+   HERO.CSS — Hero Section & Ticker
+   ============================================================ */
+
+/* ── HERO ── */
+#hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-end;
+  padding: 0 6vw;
+  overflow: hidden;
+}
+
+.hero-photo {
+  position: absolute;
+  right: 0; top: 0; bottom: 0;
+  width: 54%;
+  z-index: 1;
+}
+.hero-photo img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: 68% 20%;
+  filter: grayscale(8%) contrast(1.15) brightness(1.15);
+  opacity: 0.96;
+}
+.hero-photo::before {
+  content: '';
+  position: absolute;
+  inset: 0; z-index: 1;
+  background: linear-gradient(to right, var(--dark) 0%, rgba(12,12,12,0.55) 26%, rgba(12,12,12,0.08) 55%, transparent 100%);
+}
+.hero-photo::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 300px; z-index: 1;
+  background: linear-gradient(to top, var(--dark), transparent);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding-bottom: 8rem;
+  max-width: 560px;
+}
+
+.hero-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: opacity 0.6s, transform 0.6s;
+}
+.hero-eyebrow-line { width: 36px; height: 1px; background: var(--red); }
+.hero-eyebrow-text {
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--red);
+}
+
+.hero-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(4.5rem, 10vw, 9.5rem);
+  line-height: 0.92;
+  letter-spacing: 0.02em;
+  color: var(--white);
+  opacity: 0;
+  transform: translateY(35px);
+  transition: opacity 0.7s 0.12s, transform 0.7s 0.12s;
+}
+.hero-name .accent { color: var(--red); }
+
+.hero-surname {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2rem, 4.5vw, 4.2rem);
+  letter-spacing: 0.06em;
+  color: rgba(245,245,240,0.4);
+  line-height: 1.1;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s 0.2s, transform 0.7s 0.2s;
+}
+
+.hero-tagline {
+  font-size: clamp(0.88rem, 1.8vw, 1.05rem);
+  font-weight: 300;
+  color: var(--grey);
+  letter-spacing: 0.04em;
+  line-height: 1.7;
+  margin: 1.5rem 0 2.5rem;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s 0.28s, transform 0.7s 0.28s;
+}
+.hero-tagline span { color: rgba(245,245,240,0.75); }
+
+.hero-ctas {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s 0.38s, transform 0.7s 0.38s;
+}
+
+.hero-scroll {
+  position: absolute;
+  bottom: 2.5rem; left: 6vw;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  opacity: 0;
+  animation: fadeIn 0.8s 1.8s forwards;
+}
+.hero-scroll-text {
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--grey2);
+}
+.scroll-line {
+  width: 52px; height: 1px;
+  background: linear-gradient(to right, var(--red), transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+
+/* ── TICKER ── */
+.ticker-wrap {
+  background: var(--red);
+  padding: 12px 0;
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  z-index: 2;
+}
+.ticker-inner {
+  display: inline-flex;
+  gap: 0;
+  animation: ticker 22s linear infinite;
+}
+.ticker-item {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.12em;
+  color: var(--white);
+  padding: 0 2.5rem;
+  opacity: 0.9;
+}
+.ticker-sep { color: rgba(255,255,255,0.4); }
+
+/* ── KEYFRAMES ── */
+@keyframes fadeIn    { from { opacity: 0; } to { opacity: 1; } }
+@keyframes scrollPulse {
+  0%,100% { opacity: 0.4; transform: scaleX(1); }
+  50%     { opacity: 1;   transform: scaleX(1.1); }
+}
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@media (max-width: 900px) {
+  .hero-photo { width: 100%; opacity: 0.28; }
+}
+
+.hero-photo img{object-fit:cover;object-position:center 25%;transform:none !important;}
+.hero-photo::after{background:linear-gradient(90deg, rgba(0,0,0,.92) 0%, rgba(0,0,0,.68) 35%, rgba(0,0,0,.15) 60%, rgba(0,0,0,0) 100%);}
+.hero-name{font-size:clamp(52px,7vw,118px);line-height:0.95;max-width:700px;}
+.hero-scroll .g-item{display:none!important;}
